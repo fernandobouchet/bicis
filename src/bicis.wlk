@@ -1,7 +1,7 @@
 class Bicicleta {
 	var property rodado
 	var property largo
-	var property marca = "Olmo"
+	var property marca = ""
 	var property accesorios = []
 	
 	method altura() {
