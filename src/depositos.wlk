@@ -1,17 +1,22 @@
 class Deposito {
-    var property bicicletas = []
-    var property nocturno = false
+    const property bicicletas = #{}
 
+	method agregarBicicleta(bicicleta) {
+		bicicletas.add(bicicleta)
+	}
+	method quitarBicicleta(bicicleta) {
+		bicicletas.remove(bicicleta)
+	}
     method bicisRapidas() {
         return bicicletas.filter({ bicis => bicis.velocidadDeCrucero() > 25 })
     }
     
     method marcaBicis() {
-        return bicicletas.map({ bicis => bicis.marca() }) // corregir
+        return bicicletas.map({ bicis => bicis.marca() }).asSet()
     }
 
     method esNocturno() { 
-    	return self.nocturno()
+    	return bicicletas.all({ bicis => bicis.tieneLuz() })
     }
 
     method biciParaLlevar_Kg(peso) {
