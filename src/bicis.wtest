@@ -1,0 +1,79 @@
+import accesorios.*
+import bicis.*
+
+describe "Una bici de rodado 28, 150cm de largo, marca Olmo y un farolito como accesorio" {
+	const biciR28 = new Bicicleta()
+	method initialize() {
+		biciR28.agregarAccesorio(new Farolito())
+	}
+	test "tiene una altura de 85cm" {
+		assert.equals(85, biciR28.altura())
+	}
+	test "su velocidad crucero es de 34" {
+		assert.equals(34, biciR28.velocidadDeCrucero())
+	}
+	test "carga 0kg" {
+		assert.equals(0, biciR28.carga())
+	}
+	test "su peso es de 14.5kg" {
+		assert.equals(14.5, biciR28.peso())
+	}
+	test "tiene luz" {
+		assert.that(biciR28.tieneLuz())
+	}
+	test "tiene un accesorio liviano" {
+		assert.equals(1, biciR28.cantAccesoriosLivianos())
+	}
+}
+
+describe "Una bici rodado 26, largo 110 cm, marca Legnano, con un farolito, un canasto con volumen 8, un morral de largo 21 con ojo de gato." {
+	const biciR26 = new Bicicleta(rodado = 26, marca="Legnano", largo = 110)
+	method initialize() {
+		biciR26.agregarAccesorio(new Farolito())
+		biciR26.agregarAccesorio(new Canasto())
+		biciR26.agregarAccesorio(new MorralDeBici())
+	}
+	test "tiene una altura de 80cm" {
+		assert.equals(80, biciR26.altura())
+	}
+	test "su velocidad crucero es de 28" {
+		assert.equals(28, biciR26.velocidadDeCrucero())
+	}
+	test "carga 23kg" {
+		assert.equals(23, biciR26.carga())
+	}
+	test "su peso es de 15.5kg" {
+		assert.equals(15.5, biciR26.peso())
+	}
+	test "tiene luz" {
+		assert.that(biciR26.tieneLuz())
+	}
+	test "tiene dos accesorios livianos" {
+		assert.equals(2, biciR26.cantAccesoriosLivianos())
+	}
+}
+
+describe "Una bici rodado 20, largo 90 cm, marca Legnano, como único accesorio un morral de largo 6 y sin ojo de gato" {
+	const biciR20 = new Bicicleta(rodado = 20, marca="Legnano", largo = 90)
+	method initialize() {
+		biciR20.agregarAccesorio(new MorralDeBici(ojoDeGato = false, largo = 6))
+	}
+	test "tiene una altura de 65cm" {
+		assert.equals(65, biciR20.altura())
+	}
+	test "su velocidad crucero es de 22" {
+		assert.equals(22, biciR20.velocidadDeCrucero())
+	}
+	test "carga 2kg" {
+		assert.equals(2, biciR20.carga())
+	}
+	test "su peso es de 11.2kg" {
+		assert.equals(11.2, biciR20.peso())
+	}
+	test "no tiene luz" {
+		assert.notThat(biciR20.tieneLuz())
+	}
+	test "no tiene accesorios livianos" {
+		assert.equals(0, biciR20.cantAccesoriosLivianos())
+	}
+}

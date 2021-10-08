@@ -1,0 +1,31 @@
+import accesorios.*
+
+test "un farolito pesa 0.5kg, carga 0kg y es luminoso" {
+	const farolito = new Farolito()
+	assert.equals(0.5, farolito.peso())
+	assert.equals(0, farolito.carga())
+	assert.that(farolito.esLuminoso())
+}
+
+test "un canasto de volumen 8 pesa 0.8kg, carga 16kg y no es luminoso" {
+	const canasto = new Canasto()
+	assert.equals(8, canasto.volumen())
+	assert.equals(0.8, canasto.peso())
+	assert.equals(16, canasto.carga())
+	assert.notThat(canasto.esLuminoso())
+}
+
+test "un morral de 21cm, con ojo de gato y peso 1.2kg, carga 7kg y es luminoso" {
+	const morral = new MorralDeBici()
+	assert.equals(21, morral.largo())
+	assert.that(morral.ojoDeGato())
+	assert.equals(1.2, morral.peso())
+	assert.equals(7, morral.carga())
+	assert.that(morral.esLuminoso())
+}
+
+test "otro morral igual al anterior pero sin ojo de gato no es luminoso" {
+	const morral = new MorralDeBici()
+	morral.ojoDeGato(false)
+	assert.notThat(morral.esLuminoso())
+}

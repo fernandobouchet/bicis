@@ -1,0 +1,35 @@
+import accesorios.*
+import bicis.*
+import depositos.*
+
+describe "Un deposito con las tres bicis que estan en el test de bicis" {
+	const deposito = new Deposito()
+	const biciR28 = new Bicicleta()
+	const biciR26 = new Bicicleta(rodado = 26, marca="Legnano", largo = 110)
+	const biciR20 = new Bicicleta(rodado = 20, marca="Legnano", largo = 90)
+	method initialize() {
+		biciR28.agregarAccesorio(new Farolito())
+		biciR26.agregarAccesorio(new Farolito())
+		biciR26.agregarAccesorio(new Canasto())
+		biciR26.agregarAccesorio(new MorralDeBici())
+		biciR20.agregarAccesorio(new MorralDeBici(ojoDeGato = false, largo = 6))
+		deposito.agregarBicicleta(biciR28)
+		deposito.agregarBicicleta(biciR26)
+		deposito.agregarBicicleta(biciR20)
+	}
+	test "las bicis mas rapidas son las de R28 y R26" {
+		assert.equals(#{biciR28,biciR26}, deposito.bicisRapidas())
+	}
+	test "las marcas son Olmo y Legnano" {
+		assert.equals(#{"Olmo", "Legnano"}, deposito.marcaBicis())
+	}
+	test "el deposito no es nocturno" {
+		assert.notThat(deposito.esNocturno())
+	}
+	test "tiene bici para llevar 10kg" {
+		assert.that(deposito.biciParaLlevar_Kg(10))
+	}
+	test "no tiene bici para llegar 50kg" {
+		assert.notThat(deposito.biciParaLlevar_Kg(50))
+	}
+}
