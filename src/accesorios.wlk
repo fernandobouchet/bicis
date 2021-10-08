@@ -5,27 +5,20 @@ class Farolito {
 }
 
 class Canasto {
-	var property volumen
+	const property volumen = 8
 	const property esLuminoso = false
 	
-	method peso() {
-		return volumen / 10
-	}
-	method carga() {
-		return volumen * 2
-	}
+	method peso() = volumen / 10
+	
+	method carga() = volumen * 2
 }
 
 class MorralDeBici {
-	var property largo
-	var property ojoDeGato = false
+	const property largo = 21
+	var property ojoDeGato = true
 	const property peso = 1.2
 	
-	method carga() {
-		return largo / 3
-	}
+	method carga() = largo / 3
 	
-	method esLuminoso() {
-		return ojoDeGato
-	}
+	method esLuminoso() = ojoDeGato
 }
