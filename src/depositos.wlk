@@ -36,4 +36,16 @@ class Deposito {
 	method bicisSinAccesorios() {
 		return bicicletas.count({ bicis => bicis.accesorios() == #{} })
 	}
+	
+	method esCompanieraDe_(bici) {
+		return 
+		bicicletas.filter({
+			biciComp => biciComp != bici and 
+			(biciComp.largo() - bici.largo()).abs() < 10 and
+			biciComp.marca() == bici.marca()
+		})
+	}
+	
+	
+	
 }
