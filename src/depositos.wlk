@@ -1,5 +1,7 @@
+import bicis.*
+
 class Deposito {
-    const property bicicletas = #{}
+	const property bicicletas = #{}
 
 	method agregarBicicleta(bicicleta) {
 		bicicletas.add(bicicleta)
@@ -7,22 +9,31 @@ class Deposito {
 	method quitarBicicleta(bicicleta) {
 		bicicletas.remove(bicicleta)
 	}
-    method bicisRapidas() {
-        return bicicletas.filter({ bicis => bicis.velocidadDeCrucero() > 25 })
-    }
-    
-    method marcaBicis() {
-        return bicicletas.map({ bicis => bicis.marca() }).asSet()
-    }
+	method bicisRapidas() {
+		return bicicletas.filter({ bicis => bicis.velocidadDeCrucero() > 25 })
+	}
 
-    method esNocturno() { 
-    	return bicicletas.all({ bicis => bicis.tieneLuz() })
-    }
+	method marcaBicis() {
+		return bicicletas.map({ bicis => bicis.marca() }).asSet()
+	}
 
-    method biciParaLlevar_Kg(peso) {
-        return bicicletas.any({ bicis => bicis.carga() > peso })
-    }
+	method esNocturno() { 
+		return bicicletas.all({ bicis => bicis.tieneLuz() })
+	}
 
-// falta completar
+	method biciParaLlevar_Kg(peso) {
+		return bicicletas.any({ bicis => bicis.carga() > peso })
+	}
 
+	method laMarcaDeBiciMasRapida() {
+		return bicicletas.max({bicis => bicis.velocidadDeCrucero() }).marca()
+	}
+
+	method laCargaDeLasBicisLargas(){
+		return bicicletas.filter({bicis => bicis.largo() > 170}).sum({bicis => bicis.carga()})
+	}
+
+	method bicisSinAccesorios() {
+		return bicicletas.count({ bicis => bicis.accesorios() == #{} })
+	}
 }
