@@ -1,3 +1,5 @@
+import accesorios.*
+
 class Bicicleta {
 	const property rodado
 	const property largo
