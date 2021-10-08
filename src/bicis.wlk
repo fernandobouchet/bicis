@@ -27,4 +27,7 @@ class Bicicleta {
 	method tieneLuz() {
 		return accesorios.any({ acces => acces.esLuminoso() })
 	}
+	method cantAccesoriosLivianos() {
+		return accesorios.filter({acces => acces.peso() < 1}).size()
+	}
 }
