@@ -7,18 +7,26 @@ describe "Un deposito con las tres bicis que estan en el test de bicis" {
 	const biciR28 = new Bicicleta()
 	const biciR26 = new Bicicleta(rodado = 26, marca="Legnano", largo = 110)
 	const biciR20 = new Bicicleta(rodado = 20, marca="Legnano", largo = 90)
+	const biciR29xl = new Bicicleta(rodado = 29, marca="Olmo", largo = 200)
+	const biciR28larga = new Bicicleta(rodado = 28, marca="Legnano", largo = 180)
+
 	method initialize() {
 		biciR28.agregarAccesorio(new Farolito())
 		biciR26.agregarAccesorio(new Farolito())
 		biciR26.agregarAccesorio(new Canasto())
 		biciR26.agregarAccesorio(new MorralDeBici())
 		biciR20.agregarAccesorio(new MorralDeBici(ojoDeGato = false, largo = 6))
+		biciR29xl.agregarAccesorio(new Canasto())
+		biciR28larga.agregarAccesorio(new MorralDeBici())
+		
 		deposito.agregarBicicleta(biciR28)
 		deposito.agregarBicicleta(biciR26)
 		deposito.agregarBicicleta(biciR20)
+		deposito.agregarBicicleta(biciR29xl)
+		deposito.agregarBicicleta(biciR28larga)
 	}
-	test "las bicis mas rapidas son las de R28 y R26" {
-		assert.equals(#{biciR28,biciR26}, deposito.bicisRapidas())
+	test "las bicis mas rapidas son las de R29 R28 R26" {
+		assert.equals(#{biciR28,biciR26,biciR29xl,biciR28larga}, deposito.bicisRapidas())
 	}
 	test "las marcas son Olmo y Legnano" {
 		assert.equals(#{"Olmo", "Legnano"}, deposito.marcaBicis())
@@ -29,7 +37,20 @@ describe "Un deposito con las tres bicis que estan en el test de bicis" {
 	test "tiene bici para llevar 10kg" {
 		assert.that(deposito.biciParaLlevar_Kg(10))
 	}
-	test "no tiene bici para llegar 50kg" {
+	test "no tiene bici para llevar 50kg" {
 		assert.notThat(deposito.biciParaLlevar_Kg(50))
 	}
+	test "la marca de la bici más rápida es Olmo" {
+		assert.equals("Olmo", deposito.laMarcaDeBiciMasRapida())
+	}
+	test "la carga total de las bicis largas" {
+		assert.equals(23,deposito.laCargaDeLasBicisLargas())		
+	}
+	test "la cantidad de bicis sin accesorios" {
+		assert.equals(0, deposito.bicisSinAccesorios())
+	}
+	test "biciR29xl es compañera de biciR29xlplus" {
+		const biciR29xlplus = new Bicicleta(rodado = 29, marca="Olmo", largo = 205)	
+		assert.equals(#{biciR29xl},deposito.esCompanieraDe_(biciR29xlplus))
+	}	
 }
