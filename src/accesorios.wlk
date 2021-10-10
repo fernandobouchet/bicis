@@ -22,3 +22,15 @@ class MorralDeBici {
 	
 	method esLuminoso() = ojoDeGato
 }
+
+/* 
+RESPUESTA PUNTO Nro 5
+
+Para agregar otro accesorio se debe generar una clase que 
+cumpla con el polimorfismo de los accesorios existentes.
+
+Como mejora se propone agregar "ubicación" de los accesorios (delantera, trasera, cuadro, etc).
+
+*/
+
+
